@@ -1,0 +1,54 @@
+services:
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # Banco de dados — PostgreSQL 16
+  # ──────────────────────────────────────────────────────────────────────────
+  db:
+    image: postgres:16-alpine
+    container_name: flight_tracker_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: flight_tracker
+      POSTGRES_USER: flight_user
+      POSTGRES_PASSWORD: flight_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infra/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U flight_user -d flight_tracker"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # Mensageria — RabbitMQ 3.13 com Management UI
+  # ──────────────────────────────────────────────────────────────────────────
+  rabbitmq:
+    image: rabbitmq:3.13-management-alpine
+    container_name: flight_tracker_rabbit
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: flight_user
+      RABBITMQ_DEFAULT_PASS: flight_pass
+      RABBITMQ_DEFAULT_VHOST: flight_tracker
+    ports:
+      - "5672:5672"    # AMQP — protocolo usado pelo backend Python
+      - "15672:15672"  # Management UI — acesse no browser durante o desenvolvimento
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Volumes nomeados — dados persistem mesmo se os containers forem destruídos
+# ──────────────────────────────────────────────────────────────────────────────
+volumes:
+  postgres_data:
+  rabbitmq_data:
