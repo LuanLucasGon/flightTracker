@@ -1,0 +1,61 @@
+# ─── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+env/
+.Python
+
+# ─── Variáveis de ambiente ────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ─── Testes e cobertura ───────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# ─── IDEs ─────────────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.iml
+
+# ─── IA ───────────────────────────────────────────────────────────────────────
+.claude/
+.codex/
+.cursor/
+.aider/
+.continue/
+
+# ─── Angular ──────────────────────────────────────────────────────────────────
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+
+# ─── Flutter ──────────────────────────────────────────────────────────────────
+mobile/.dart_tool/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+mobile/build/
+mobile/pubspec.lock
+
+# ─── Docker ───────────────────────────────────────────────────────────────────
+postgres_data/
+
+# ─── Sistema operacional ──────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Dados externos ───────────────────────────────────────────────────────────
+infra/dados/*.csv
