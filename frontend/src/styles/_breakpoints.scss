@@ -1,0 +1,55 @@
+// =============================================================================
+// Breakpoints — mobile-first mixins.
+// Use as @include breakpoint(tablet) { ... } inside any selector.
+// =============================================================================
+
+$breakpoints: (
+  mobile:   480px,
+  tablet:   768px,
+  desktop:  1024px,
+  wide:     1440px,
+  ultra:    1920px,
+);
+
+@mixin breakpoint($name) {
+  @if not map-has-key($breakpoints, $name) {
+    @error "Unknown breakpoint `#{$name}`. Available: #{map-keys($breakpoints)}.";
+  }
+  @media (min-width: map-get($breakpoints, $name)) {
+    @content;
+  }
+}
+
+// Below a breakpoint (use sparingly — mobile-first preferred).
+@mixin breakpoint-down($name) {
+  @if not map-has-key($breakpoints, $name) {
+    @error "Unknown breakpoint `#{$name}`.";
+  }
+  @media (max-width: (map-get($breakpoints, $name) - 1px)) {
+    @content;
+  }
+}
+
+// Between two breakpoints.
+@mixin breakpoint-between($from, $to) {
+  @media (min-width: map-get($breakpoints, $from))
+    and (max-width: (map-get($breakpoints, $to) - 1px)) {
+    @content;
+  }
+}
+
+// Container query escape hatch for component-scoped responsiveness.
+@mixin container($min-width) {
+  @container (min-width: #{$min-width}) {
+    @content;
+  }
+}
+
+// Expose as custom properties too, for JS reads.
+:root {
+  --bp-mobile:  480px;
+  --bp-tablet:  768px;
+  --bp-desktop: 1024px;
+  --bp-wide:    1440px;
+  --bp-ultra:   1920px;
+}

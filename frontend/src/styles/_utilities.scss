@@ -1,0 +1,132 @@
+// =============================================================================
+// Minimal utility classes.
+// Intentionally small — we are not building Tailwind. Only utilities that pay
+// for themselves across components.
+// =============================================================================
+
+// ---------- Layout ----------
+
+.flex        { display: flex; }
+.inline-flex { display: inline-flex; }
+.grid        { display: grid; }
+.block       { display: block; }
+.inline      { display: inline; }
+.hidden      { display: none; }
+
+.flex-row    { flex-direction: row; }
+.flex-col    { flex-direction: column; }
+.flex-wrap   { flex-wrap: wrap; }
+
+.items-start    { align-items: flex-start; }
+.items-center   { align-items: center; }
+.items-end      { align-items: flex-end; }
+.items-stretch  { align-items: stretch; }
+.items-baseline { align-items: baseline; }
+
+.justify-start    { justify-content: flex-start; }
+.justify-center   { justify-content: center; }
+.justify-end      { justify-content: flex-end; }
+.justify-between  { justify-content: space-between; }
+.justify-around   { justify-content: space-around; }
+
+.flex-1     { flex: 1 1 0%; }
+.flex-auto  { flex: 1 1 auto; }
+.flex-none  { flex: none; }
+
+// Gaps — built off the spacing scale.
+.gap-1  { gap: var(--space-1); }
+.gap-2  { gap: var(--space-2); }
+.gap-3  { gap: var(--space-3); }
+.gap-4  { gap: var(--space-4); }
+.gap-5  { gap: var(--space-5); }
+.gap-6  { gap: var(--space-6); }
+.gap-8  { gap: var(--space-8); }
+
+// ---------- Grid helpers ----------
+
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.grid-cols-auto-fit { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+// ---------- Text ----------
+
+.text-left    { text-align: left; }
+.text-center  { text-align: center; }
+.text-right   { text-align: right; }
+
+.text-primary   { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-brand     { color: var(--color-primary); }
+.text-success   { color: var(--color-success); }
+.text-error     { color: var(--color-error); }
+.text-warning   { color: var(--color-warning); }
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// ---------- Surfaces ----------
+
+.surface {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.surface-elevated {
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+// ---------- Accessibility ----------
+
+// Screen-reader only — visually hidden but available to assistive tech.
+.visually-hidden,
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// Skip-link pattern — show on keyboard focus.
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-4);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+  border-radius: var(--radius-md);
+  z-index: var(--z-toast);
+
+  &:focus {
+    top: var(--space-4);
+  }
+}
+
+// Focus-visible ring (use on interactive elements that need it).
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+// ---------- Misc ----------
+
+.no-select { user-select: none; }
+.pointer   { cursor: pointer; }
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: var(--color-divider);
+}

@@ -1,0 +1,168 @@
+// =============================================================================
+// Animations — keyframes + utility classes.
+// Respects prefers-reduced-motion.
+// =============================================================================
+
+// ---------- Keyframes ----------
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Pulse — used on the live aircraft marker on the map.
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--color-primary-soft),
+                0 0 0 0 rgba(45, 126, 255, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 14px transparent,
+                0 0 0 22px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent,
+                0 0 0 0 transparent;
+  }
+}
+
+// Soft pulse — for status dots ("LIVE", "BOARDING", etc.).
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(0.85);
+  }
+}
+
+// Spinner.
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// Indeterminate progress bar (loading flights).
+@keyframes indeterminate {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+
+// Skeleton shimmer.
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+// Theme transition — color swap glides instead of snapping.
+@keyframes theme-transition {
+  from { opacity: 0.85; }
+  to   { opacity: 1; }
+}
+
+// ---------- Utility classes ----------
+
+.anim-fade-in    { animation: fade-in     var(--duration-base) var(--ease-out) both; }
+.anim-slide-up   { animation: slide-up    var(--duration-base) var(--ease-out) both; }
+.anim-slide-down { animation: slide-down  var(--duration-base) var(--ease-out) both; }
+.anim-slide-in   { animation: slide-in-right var(--duration-base) var(--ease-out) both; }
+.anim-scale-in   { animation: scale-in    var(--duration-base) var(--ease-spring) both; }
+
+.anim-pulse     { animation: pulse 2s var(--ease-out) infinite; }
+.anim-pulse-dot { animation: pulse-dot 1.4s var(--ease-in-out) infinite; }
+.anim-spin      { animation: spin 0.9s linear infinite; }
+
+.anim-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-elevated) 0%,
+    var(--color-border) 50%,
+    var(--color-surface-elevated) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+// Stagger helper — pair with .anim-* on children for cascading entrances.
+@for $i from 1 through 12 {
+  .stagger-#{$i} {
+    animation-delay: #{$i * 60}ms;
+  }
+}
+
+// ---------- Global theme transition ----------
+// Smoothly tween colors when [data-theme] flips. Limited to specific
+// properties to avoid the layout cost of `transition: all`.
+
+* {
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    border-color     var(--duration-base) var(--ease-out),
+    color            var(--duration-base) var(--ease-out),
+    fill             var(--duration-base) var(--ease-out),
+    stroke           var(--duration-base) var(--ease-out),
+    box-shadow       var(--duration-fast) var(--ease-out);
+}
+
+// ---------- Reduced motion ----------
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

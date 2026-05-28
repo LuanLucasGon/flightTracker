@@ -1,0 +1,70 @@
+// =============================================================================
+// Shadows — theme-aware.
+// Light mode uses soft slate-blue shadows; dark mode uses deep black with a
+// subtle blue-tinted glow for the aviation accent.
+// =============================================================================
+
+:root {
+  // Soft, tight, two-layer shadows. Composed for light surfaces.
+  --shadow-xs:  0 1px 2px rgba(15, 23, 60, 0.05);
+  --shadow-sm:  0 1px 2px rgba(15, 23, 60, 0.06),
+                0 2px 4px rgba(15, 23, 60, 0.04);
+  --shadow-md:  0 2px 4px rgba(15, 23, 60, 0.06),
+                0 8px 16px rgba(15, 23, 60, 0.08);
+  --shadow-lg:  0 4px 8px rgba(15, 23, 60, 0.06),
+                0 16px 32px rgba(15, 23, 60, 0.12);
+  --shadow-xl:  0 8px 16px rgba(15, 23, 60, 0.08),
+                0 32px 64px rgba(15, 23, 60, 0.16);
+
+  // Inset for input fields, scroll wells.
+  --shadow-inset: inset 0 1px 2px rgba(15, 23, 60, 0.06);
+
+  // Aviation glow — used on the live aircraft marker.
+  --shadow-glow:       0 0 0 4px rgba(26, 95, 204, 0.18),
+                       0 0 16px rgba(26, 95, 204, 0.35);
+  --shadow-glow-strong:0 0 0 6px rgba(26, 95, 204, 0.24),
+                       0 0 32px rgba(26, 95, 204, 0.55);
+
+  // Status glows.
+  --shadow-glow-success: 0 0 0 4px rgba(0, 122, 82, 0.18),
+                         0 0 16px rgba(0, 122, 82, 0.35);
+  --shadow-glow-error:   0 0 0 4px rgba(217, 0, 46, 0.18),
+                         0 0 16px rgba(217, 0, 46, 0.35);
+
+  // Focus ring — accessibility.
+  --shadow-focus: 0 0 0 3px var(--color-primary-soft),
+                  0 0 0 4px var(--color-primary);
+}
+
+// =============================================================================
+// Dark mode shadow recalibration.
+// In dark mode, drop shadows are less visible — we instead lean on glow and
+// elevated surface borders for depth.
+// =============================================================================
+
+[data-theme="dark"] {
+  --shadow-xs:  0 1px 2px rgba(0, 0, 0, 0.40);
+  --shadow-sm:  0 1px 2px rgba(0, 0, 0, 0.45),
+                0 2px 4px rgba(0, 0, 0, 0.30);
+  --shadow-md:  0 2px 4px rgba(0, 0, 0, 0.45),
+                0 8px 16px rgba(0, 0, 0, 0.55);
+  --shadow-lg:  0 4px 8px rgba(0, 0, 0, 0.50),
+                0 16px 32px rgba(0, 0, 0, 0.65);
+  --shadow-xl:  0 8px 16px rgba(0, 0, 0, 0.55),
+                0 32px 64px rgba(0, 0, 0, 0.75);
+
+  --shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.45);
+
+  --shadow-glow:       0 0 0 4px rgba(45, 126, 255, 0.25),
+                       0 0 20px rgba(45, 126, 255, 0.50);
+  --shadow-glow-strong:0 0 0 6px rgba(45, 126, 255, 0.32),
+                       0 0 40px rgba(45, 126, 255, 0.75);
+
+  --shadow-glow-success: 0 0 0 4px rgba(0, 224, 150, 0.22),
+                         0 0 20px rgba(0, 224, 150, 0.50);
+  --shadow-glow-error:   0 0 0 4px rgba(255, 77, 106, 0.22),
+                         0 0 20px rgba(255, 77, 106, 0.50);
+
+  --shadow-focus: 0 0 0 3px var(--color-primary-soft),
+                  0 0 0 4px var(--color-primary);
+}

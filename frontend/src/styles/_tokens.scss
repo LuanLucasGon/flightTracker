@@ -1,0 +1,105 @@
+// =============================================================================
+// Design Tokens — Flight Tracker
+// CSS custom properties for both light and dark themes.
+// Light is the default (:root). Dark is opt-in via [data-theme="dark"].
+// =============================================================================
+
+:root {
+  // ---------- Surfaces ----------
+  --color-background:        #F5F7FF;
+  --color-surface:           #FFFFFF;
+  --color-surface-elevated:  #EEF2FF;
+
+  // ---------- Brand ----------
+  --color-primary:           #1A5FCC;
+  --color-primary-hover:     #1450B0;
+  --color-primary-contrast:  #FFFFFF;
+  --color-primary-soft:      rgba(26, 95, 204, 0.10);
+
+  // ---------- Text ----------
+  --color-text-primary:      #0A0A1A;
+  --color-text-secondary:    #555577;
+  --color-text-on-primary:   #FFFFFF;
+
+  // ---------- Lines ----------
+  --color-border:            #DDE2F0;
+  --color-border-strong:     #B8C0D6;
+  --color-divider:           #E8ECF7;
+
+  // ---------- Status ----------
+  --color-error:             #D9002E;
+  --color-success:           #007A52;
+  --color-warning:           #996500;
+
+  --color-error-soft:        rgba(217, 0, 46, 0.10);
+  --color-success-soft:      rgba(0, 122, 82, 0.10);
+  --color-warning-soft:      rgba(153, 101, 0, 0.10);
+
+  // ---------- Aviation accents ----------
+  --color-flight-path:       #1A5FCC;
+  --color-flight-trail:      rgba(26, 95, 204, 0.25);
+  --color-runway:            #555577;
+
+  // ---------- Radii ----------
+  --radius-xs:               4px;
+  --radius-sm:               6px;
+  --radius-md:               10px;
+  --radius-lg:               14px;
+  --radius-xl:               20px;
+  --radius-pill:             999px;
+  --radius-circle:           50%;
+
+  // ---------- Z-index ----------
+  --z-base:                  1;
+  --z-dropdown:              100;
+  --z-sticky:                200;
+  --z-overlay:               300;
+  --z-modal:                 400;
+  --z-toast:                 500;
+  --z-tooltip:               600;
+
+  // ---------- Motion ----------
+  --duration-instant:        80ms;
+  --duration-fast:           150ms;
+  --duration-base:           240ms;
+  --duration-slow:           400ms;
+
+  --ease-out:                cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out:             cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring:             cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+// =============================================================================
+// Dark theme
+// =============================================================================
+
+[data-theme="dark"] {
+  --color-background:        #0A0A0F;
+  --color-surface:           #12121A;
+  --color-surface-elevated:  #1A1A28;
+
+  --color-primary:           #2D7EFF;
+  --color-primary-hover:     #1A6AFF;
+  --color-primary-contrast:  #FFFFFF;
+  --color-primary-soft:      rgba(45, 126, 255, 0.14);
+
+  --color-text-primary:      #F0F0FF;
+  --color-text-secondary:    #8888AA;
+  --color-text-on-primary:   #FFFFFF;
+
+  --color-border:            #2A2A3A;
+  --color-border-strong:     #3A3A50;
+  --color-divider:           #1F1F2E;
+
+  --color-error:             #FF4D6A;
+  --color-success:           #00E096;
+  --color-warning:           #FFB830;
+
+  --color-error-soft:        rgba(255, 77, 106, 0.16);
+  --color-success-soft:      rgba(0, 224, 150, 0.16);
+  --color-warning-soft:      rgba(255, 184, 48, 0.16);
+
+  --color-flight-path:       #2D7EFF;
+  --color-flight-trail:      rgba(45, 126, 255, 0.30);
+  --color-runway:            #8888AA;
+}
