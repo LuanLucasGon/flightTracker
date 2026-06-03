@@ -1,6 +1,15 @@
 import pytest
+import os
+
+os.environ["DATABASE_URL"] = "sqlite:///:memory:"
+os.environ["JWT_SECRET_KEY"] = "test-secret"
+os.environ["SECRET_KEY"] = "test-secret"
+os.environ["FLASK_ENV"] = "testing"
+os.environ["RABBITMQ_URL"] = "amqp://guest:guest@localhost:5672/"
+
 from app import create_app
 from app.shared.database.extensions import db as _db
+
 
 @pytest.fixture(scope="session")
 def app():
@@ -23,9 +32,7 @@ def db(app):
     with app.app_context():
         connection = _db.engine.connect()
         transaction = connection.begin()
-
         yield _db
-
         transaction.rollback()
         connection.close()
 
