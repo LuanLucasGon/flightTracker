@@ -1,20 +1,20 @@
 class DomainException(Exception):
     status_code: int = 400
 
-    def __init__(self,  message: str):
+    def __init__(self, message: str) -> None:
         super().__init__(message)
         self.message = message
 
 
-class NotFound(DomainException):
+class NotFoundException(DomainException):
     status_code = 404
 
 
-class Conflict(DomainException):
+class ConflictException(DomainException):
     status_code = 409
 
 
-class Unauthorized(DomainException):
+class UnauthorizedException(DomainException):
     status_code = 401
 
 
@@ -24,4 +24,3 @@ class InvalidDataException(DomainException):
 
 class ExternalServiceException(DomainException):
     status_code = 503
-
